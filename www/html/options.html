@@ -1,0 +1,26 @@
+<html>
+<head><title>Options</title></head>
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/getLocations.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/style.css" />
+<!--	<script type="text/javascript" src="../js/delete.js"></script>-->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#delete").click(function(){
+				window.location.href="delete.html";
+			});
+			$("#edit").click(function(){
+				window.location.href="edit.html";
+			});
+		});
+			
+	</script>
+	<body>
+		<div name="home-page" class="home-page">
+		<div class="footer">
+			<input type="submit" name="submit" id="edit" value="Edit" class="button" />
+			<input type="submit" name="submit" id="delete" value="Delete" class="button" />
+		</div>
+		</div>
+	</body>
+</html>

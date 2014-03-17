@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Saved Locations</title>
+        <link rel="stylesheet" type="text/css" href="../css/getlocations.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/getLocations.js"></script>
+		<script type="text/javascript" src="../js/edit.js"></script>
+		<script type="text/javascript" src="../js/editmodal.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				getLocation(db,"edit");
+				$("#but").click(function(){
+					var i=0;	
+					var radios=document.getElementsByName("edit");
+					for(i=0;i<radios.length;i++)
+						if(radios[i].checked)
+							break;
+					$("#but").hide();
+					$("#restable").hide();
+					var id=i.toString()+"[0]";
+					var profile=i.toString()+"[3]";
+					var type=i.toString()+"[4]";
+					id=document.getElementById(id).value;
+					profile=document.getElementById(profile).value;
+					type=document.getElementById(type).value;
+					getNewValues(db,id,profile,type);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="content">
+			<input type="button" name="button" id="but" value="Edit Selected" class="save" />
+            </div>
+         
+	</body>
+</html>

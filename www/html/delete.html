@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Saved Locations</title>
+          <link rel="stylesheet" type="text/css" href="../css/getlocations.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/getLocations.js"></script>
+		<script type="text/javascript" src="../js/delete.js"></script>
+      
+		
+	<!--	-->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				getLocation(db,"delete");
+				var names=new Array();
+				$("#but").show();
+				$("#but").click(function(){
+						
+					$("input:checkbox[name=delete]").each(function()
+					{
+							var $this = $(this);
+							if($this.is(":checked")){
+								names.push($this.attr("id"));}
+					});
+			/*	var but=document.createElement("script");
+				but.setAttribute("type","text/javascript");
+				but.setAttribute("src","../js/delete.js");
+				document.appendChild(but);*/
+				
+					for(var i=0;i<names.length;i++)
+						console.log(names[i]);
+					deleteSelected(db,names);
+				});
+					//*/
+
+			});
+		</script>
+        
+	</head>
+	<body>
+		<!--<span id="disparea"></span>-->
+        
+            
+            <div class="content">
+			<input type="button" name="button" id="but" value="Delete Marked" class="save" />
+            </div>
+         
+            
+
+		  
+           
+	</body>
+</html>

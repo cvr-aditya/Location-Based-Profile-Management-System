@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Hello World</title>
+		<script type="text/javascript" src="cordova.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/home_page.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$("#saveloc").click(function(){
+					document.location.href="html/savelocation.html";
+				});
+				$("#options").click(function(){
+					document.location.href="html/options.html";
+				});
+				$("#viewloc").click(function(){
+					document.location.href="html/viewlocations.html";
+				});
+			});
+        </script>
+    </head>
+    <body>
+	<div name="home-page" class="home-page">
+		<div class="header">
+			<h1>Welcome</h1>
+			<span><i><h3>Save your location and change the profile</h3></i></span>
+		</div>
+		<div class="content">
+			<input name="username" type="button" id="viewloc" value="View Locations" class="save-class" /><br/>
+			<input name="password" type="button" id="options" value="Options" class="settings-class" />		
+		</div>
+		<div class="footer">
+            
+			<input type="submit" name="submit" id="saveloc" value="Save This Location" class="button" />
+		</div>
+	</div>
+    </body>
+</html>
+.

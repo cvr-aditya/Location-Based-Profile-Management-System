@@ -1,0 +1,17 @@
+<html>
+	<head>
+		<title>Saved Locations</title>
+        <link rel="stylesheet" type="text/css" href="../css/getlocations.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="../js/getLocations.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				getLocation(db,"view");
+			});
+		</script>
+	</head>
+	<body>
+		<!--<span id="disparea"></span>-->
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+	<head>
+	   	<title>Save Location</title>
+         <!-- <link rel="stylesheet" type="text/css" href="css/style.css" />-->
+		<script type="text/javascript" src="../js/index.js"></script>
+		<script type="text/javascript" src="../cordova.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="../js/aes.js"></script>
+		<script type="text/javascript" src="../js/audiomanager.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				$("#values").click(function(){
+					var name=$("#name").val().toLowerCase();
+					var profile=$("#profile").val();
+					var alerttype;
+					if(document.getElementById('automatic').checked) 
+						alerttype="automatic";	
+					else if(document.getElementById('manual').checked) 
+						alerttype="manual";
+					saveLocation(db,name,profile,alerttype);
+				});
+				$("#profiles").click(function(){
+					var mode=$("#profile").val();
+					ProfileManager.changeMode(mode);
+				});
+			});
+		</script>
+	</head>
+	 
+	<body>
+        
+	<div name="home-page" class="home-page">
+		<div class="header">
+            <h1>Enter Location Name&nbsp; &nbsp;<input type="text" class="user" name="name" id="name"
+                        maxlength="20" placeholder="Enter Location Name"/><br/><br/></h1>
+            
+       
+<h1>Select Profile&nbsp;&nbsp;</h1>
+        
+        
+            <select id="profile" display="none" class="dropdown" > 
+				                 <option value="normal" >Normal</option>
+				                    <option value="vibrate" >Vibrate</option>
+				                    <option value="silent" >Silent</option>
+			                      </select><br/><br/>
+			<h1>Select Type&nbsp;&nbsp; <input type="radio" name="alerttype" id="manual" class="checkbox" checked="true"/>Manual<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="alerttype" class="checkbox" id="automatic"/>Automatic<br/><br/></h1>
+            
+		  </div>
+		  <div class="footer">
+			<input type="submit" name="submit" id="values" value="Add Location" class="button" />
+			<input type="submit" name="submit" id="profiles" value="Profiles" class="button" />
+		  </div>
+        </div>
+ 	
+            
+	</body>
+</html>
