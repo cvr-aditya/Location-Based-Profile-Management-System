@@ -6,6 +6,10 @@
 		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
+				//var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				//runBackground(db);
+				var message=window.Checker.getMessage();
+				console.log(message);
 				$("#saveloc").click(function(){
 					document.location.href="html/savelocation.html";
 				});

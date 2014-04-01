@@ -28,8 +28,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.AudioManager;
-import android.util.Log;
 
 /*
  * This class is the interface to the Geolocation.  It's bound to the geo object.
@@ -41,7 +39,7 @@ public class GeoBroker extends CordovaPlugin {
     private GPSListener gpsListener;
     private NetworkListener networkListener;
     private LocationManager locationManager;    
-    AudioManager audioManager=(AudioManager)this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+
     /**
      * Executes the request and returns PluginResult.
      *
@@ -67,8 +65,8 @@ public class GeoBroker extends CordovaPlugin {
             if (action.equals("getLocation")) {
                 boolean enableHighAccuracy = args.getBoolean(0);
                 int maximumAge = args.getInt(1);
-
-                Location last = this.locationManager.getLastKnownLocation((enableHighAccuracy ? LocationManager.GPS_PROVIDER: LocationManager.NETWORK_PROVIDER));
+                String provider = (enableHighAccuracy && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) ? LocationManager.GPS_PROVIDER : LocationManager.NETWORK_PROVIDER;
+                Location last = this.locationManager.getLastKnownLocation(provider);
                 // Check if we can use lastKnownLocation to get a quick reading and use less battery
                 if (last != null && (System.currentTimeMillis() - last.getTime()) <= maximumAge) {
                     PluginResult result = new PluginResult(PluginResult.Status.OK, this.returnLocationJSON(last));
@@ -86,28 +84,6 @@ public class GeoBroker extends CordovaPlugin {
                 String id = args.getString(0);
                 this.clearWatch(id);
             }
-            else if(action.equals("changemode")){
-    			try {
-    				JSONObject obj=args.getJSONObject(0);
-    				String mode=obj.getString("mode");
-    				Log.d("mess",mode);
-    				if(mode.equals("normal"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-    				else if(mode.equals("vibrate"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-    				else if(mode.equals("silent"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-    				callbackContext.success();
-    				return true;
-    			} catch (JSONException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    				Log.d("error","in json exception");
-    				callbackContext.error("Invalid Arguments");
-    				return false;
-    			}
-    			
-    		}
             else {
                 return false;
             }
@@ -126,7 +102,7 @@ public class GeoBroker extends CordovaPlugin {
     }
 
     private void getCurrentLocation(CallbackContext callbackContext, boolean enableHighAccuracy, int timeout) {
-        if (enableHighAccuracy) {
+        if (enableHighAccuracy && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             this.gpsListener.addCallback(callbackContext, timeout);
         } else {
             this.networkListener.addCallback(callbackContext, timeout);
@@ -134,7 +110,7 @@ public class GeoBroker extends CordovaPlugin {
     }
 
     private void addWatch(String timerId, CallbackContext callbackContext, boolean enableHighAccuracy) {
-        if (enableHighAccuracy) {
+        if (enableHighAccuracy && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             this.gpsListener.addWatch(timerId, callbackContext);
         } else {
             this.networkListener.addWatch(timerId, callbackContext);

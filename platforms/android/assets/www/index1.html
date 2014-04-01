@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css1/jquery.mobile-1.4.2.css" />
+  <link rel="stylesheet" type="text/css" href="css1/jquery.mobile.flatui.css" />
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="jquery.js"></script>
+  <script src="jquery.mobile-1.4.0-rc.1.js"></script>
+  <script type="text/javascript">
+		$(document).ready(function(){
+				message=window.Checker.getMessage();
+				alert(message);
+				m2=window.Checker.setm();
+				alert(m2);
+				$("#saveloc").click(function(){
+					document.location.href="html/savelocation1.html";
+				});
+				$("#options").click(function(){
+					document.location.href="html/options.html";
+				});
+				$("#viewloc").click(function(){
+					document.location.href="html/viewlocations.html";
+				});
+			});
+  </script>
+</head>
+<body >
+	<div data-role="page">
+		<div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
+			<div data-role="header">
+				<h1>Location Based Profile Manager</h1>
+			</div>
+			</br></br></br></br></br></br></br>
+			<fieldset class="ui-grid-a">
+				<div data-theme="b" id="viewloc" data-content-theme="b" ><button  data-icon="flat-location" data-theme="e">My Locations</button></div>
+				<div data-theme="b" id="options" data-content-theme="b"><button data-icon="flat-menu" data-theme="f">Options</button></div>
+				<div data-theme="b" id="saveloc" data-content-theme="b"><button data-icon="flat-plus" data-theme="g">Save This Location</button></div>
+				<div data-theme="b" data-content-theme="b"><button data-icon="info" data-theme="d">Help</button></div>
+			</fieldset>
+  
+		<div style="height: 180px;;" id="map"></div>
+		<div id="highlight"> </div>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Hello World</title>
+		<script type="text/javascript" src="../cordova.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/home_page.css" />
+		<script type="text/javascript" src="../js/search.js"></script>
+		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function(){
+				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+				$("#add").click(function(){
+					var lat=$("#lat").val();
+					var long=$("#long").val();
+					addindb(db,lat,long);
+				});
+				$("#find").click(function(){
+					runBackground(db);
+				});
+			});
+        </script>
+    </head>
+    <body>
+	<div name="home-page" class="home-page">
+		<div class="footer">
+           	Enter lat <input type="text" id="lat"/>
+			Enter long <input type="text" id="long"/>
+			<input type="button" id="add" name="ADD" value="ADD"/>
+			<input type="button" id="find" name="FIND" value="FIND"/>
+		</div>
+	</div>
+    </body>
+</html>
+.

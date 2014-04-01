@@ -205,18 +205,6 @@ var geolocation = {
             timers[id].timer = false;
             exec(null, null, "Geolocation", "clearWatch", [id]);
         }
-    },
-	changeMode: function(mode,successCallback,errorCallback) {
-    	alert("in js function came");
-        exec(
-            successCallback, // success callback function
-            errorCallback, // error callback function
-            'ProfileManager', // mapped to our native Java class called "ProfileManager"
-            'changemode', // with this action name
-            [{                  // and this array of custom arguments to create our entry
-                "mode":mode
-            }]
-        ); 
     }
 };
 

@@ -19,19 +19,29 @@
 
 package com.phonegap.helloworld;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class HelloWorld extends CordovaActivity 
+
+public class HelloWorld extends CordovaActivity
 {
+	
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+		Checker cna=new Checker(this);
         super.onCreate(savedInstanceState);
         super.init();
         // Set by <content src="index.html" /> in config.xml
-        super.loadUrl(Config.getStartUrl());
-        //super.loadUrl("file:///android_asset/www/index.html")
+        //super.loadUrl(Config.getStartUrl());
+        //super.loadUrl("file:///android_asset/www/index.html")    
+        appView.addJavascriptInterface(cna, "Checker");
+        super.loadUrl("file:///android_asset/www/index1.html");
     }
+    
+    
 }
 

@@ -28,8 +28,6 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-import android.media.AudioManager;
-import android.util.Log;
 
 /*
  * This class is the interface to the Geolocation.  It's bound to the geo object.
@@ -41,7 +39,7 @@ public class GeoBroker extends CordovaPlugin {
     private GPSListener gpsListener;
     private NetworkListener networkListener;
     private LocationManager locationManager;    
-    AudioManager audioManager=(AudioManager)this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
+
     /**
      * Executes the request and returns PluginResult.
      *
@@ -51,7 +49,6 @@ public class GeoBroker extends CordovaPlugin {
      * @return 			True if the action was valid, or false if not.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-    	Log.d("Message","Entered in geo"+action);
         if (locationManager == null) {
             locationManager = (LocationManager) this.cordova.getActivity().getSystemService(Context.LOCATION_SERVICE);
         }
@@ -66,7 +63,6 @@ public class GeoBroker extends CordovaPlugin {
 
 
             if (action.equals("getLocation")) {
-            	Log.d("message","in geolocation function");
                 boolean enableHighAccuracy = args.getBoolean(0);
                 int maximumAge = args.getInt(1);
 
@@ -88,29 +84,6 @@ public class GeoBroker extends CordovaPlugin {
                 String id = args.getString(0);
                 this.clearWatch(id);
             }
-            else if(action.equals("changemode")){
-            	Log.d("message","in change mode function");
-    			try {
-    				JSONObject obj=args.getJSONObject(0);
-    				String mode=obj.getString("mode");
-    				Log.d("mess",mode);
-    				if(mode.equals("normal"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-    				else if(mode.equals("vibrate"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-    				else if(mode.equals("silent"))
-    					audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-    				callbackContext.success();
-    				return true;
-    			} catch (JSONException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    				Log.d("error","in json exception");
-    				callbackContext.error("Invalid Arguments");
-    				return false;
-    			}
-    			
-    		}
             else {
                 return false;
             }
