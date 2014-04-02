@@ -11,6 +11,8 @@
   <script type="text/javascript">
 		$(document).ready(function(){
 			var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+			message=window.Checker.getMessage();
+			alert(message);
 			$("#home").click(function(){
 				window.location.href="../index1.html";
 			});

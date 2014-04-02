@@ -11,16 +11,16 @@ function saveLocation(db,name,profile,alerttype)
 	
 }   
 function showlocation() {
-   console.log("in savelocation");
+   alert("in savelocation");
    navigator.geolocation.getCurrentPosition(callback,errfun);
 }
  
 function errfun(error){
 	console.log("Code :"+error.code);
-	console.log("Error :"+error.message);
+	alert("Error :"+error.message);
 }
 function callback(position) {
-   console.log("in success");
+   alert("in success");
    var lati = position.coords.latitude;
    var longi= position.coords.longitude;
     latitude=lati;
