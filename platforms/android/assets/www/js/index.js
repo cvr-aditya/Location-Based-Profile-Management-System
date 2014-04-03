@@ -39,7 +39,7 @@ function populateDB(tx) {
 	tx.executeSql('INSERT INTO LOCATIONS_LIST (name,latitude,longitude,profile,type) VALUES (?,?,?,?,?)',[name,latitude,longitude,profile,alerttype],null,function(tx,err)
 	  {
 		alert("A record already exists by this name\nPlease enter another name");
-		document.location.href="../html/savelocation1.html";
+		document.location.href="../html/savelocation.html";
 	  }
 	);
 	tx.executeSql('SELECT * FROM LOCATIONS_LIST',[],function(tx,results){

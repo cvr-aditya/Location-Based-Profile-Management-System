@@ -1,60 +1,64 @@
+<!DOCTYPE html>
 <html>
-	<head>
-	   	<title>Save Location</title>
-         <!-- <link rel="stylesheet" type="text/css" href="css/style.css" />-->
-		<script type="text/javascript" src="../js/index.js"></script>
-		<script type="text/javascript" src="../cordova.js"></script>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
-		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="../js/aes.js"></script>
-		<script type="text/javascript" src="../js/audiomanager.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){
-				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
-				$("#values").click(function(){
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile-1.4.2.css" />
+  <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile.flatui.css" />
+  <script type="text/javascript" src="../js/index.js"></script>
+  <script src="../jquery.js"></script>
+  <script src="../jquery.mobile-1.4.0-rc.1.js"></script>
+  <script type="text/javascript">
+		$(document).ready(function(){
+			var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
+			$("#home").click(function(){
+				window.location.href="../index.html";
+			});
+			$("#values").click(function(){
 					var name=$("#name").val().toLowerCase();
 					var profile=$("#profile").val();
+                    var msg=window.ProfileManager.setMode(profile);
+                    alert(msg);
 					var alerttype;
-					if(document.getElementById('automatic').checked) 
+					if(document.getElementById('radio-choice-1-a').checked) 
 						alerttype="automatic";	
-					else if(document.getElementById('manual').checked) 
+					else if(document.getElementById('radio-choice-1-b').checked) 
 						alerttype="manual";
+					console.log(name+ "  "+ profile+"  "+alerttype);
 					saveLocation(db,name,profile,alerttype);
-				});
-				$("#profiles").click(function(){
-					var mode=$("#profile").val();
-					ProfileManager.changeMode(mode);
-				});
 			});
-		</script>
-	</head>
-	 
-	<body>
-        
-	<div name="home-page" class="home-page">
-		<div class="header">
-            <h1>Enter Location Name&nbsp; &nbsp;<input type="text" class="user" name="name" id="name"
-                        maxlength="20" placeholder="Enter Location Name"/><br/><br/></h1>
-            
-       
-<h1>Select Profile&nbsp;&nbsp;</h1>
-        
-        
-            <select id="profile" display="none" class="dropdown" > 
-				                 <option value="normal" >Normal</option>
-				                    <option value="vibrate" >Vibrate</option>
-				                    <option value="silent" >Silent</option>
-			                      </select><br/><br/>
-			<h1>Select Type&nbsp;&nbsp; <input type="radio" name="alerttype" id="manual" class="checkbox" checked="true"/>Manual<br/>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="alerttype" class="checkbox" id="automatic"/>Automatic<br/><br/></h1>
-            
-		  </div>
-		  <div class="footer">
-			<input type="submit" name="submit" id="values" value="Add Location" class="button" />
-			<input type="submit" name="submit" id="profiles" value="Profiles" class="button" />
-		  </div>
-        </div>
- 	
-            
-	</body>
+		});
+  </script>
+</head>
+<body >
+  <div data-role="page">
+
+    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
+
+    <div data-role="header">
+      <a data-iconpos="notext" id="home" data-role="button" data-icon="home" title="Home">Home</a>
+      <h1>Location Based Profile Manager</h1>
+    </div>
+	</br></br></br></br></br></br></br>
+	<input type="text" id="name" placeholder="Enter Name" />
+	<div data-role="fieldcontain">
+        <select name="select-choice" id="profile" data-native-menu="false" data-theme="a">
+          <option value="normal">Normal</option>
+          <option value="vibrate">Vibrate</option>
+          <option value="silent">Silent</option>
+        </select>
+    </div> 
+	<div data-role="fieldcontain">
+        <fieldset data-role="controlgroup">
+          <input type="radio" name="radio-choice-a" data-theme="c" id="radio-choice-1-a" value="automatic" checked="checked" />
+          <label for="radio-choice-1-a">Automatic</label>
+
+          <input type="radio" name="radio-choice-a" data-theme="c" id="radio-choice-1-b" value="manual"  />
+          <label for="radio-choice-1-b">Manual</label>
+        </fieldset>
+    </div>
+	<div data-theme="b" id="values" data-content-theme="b"><button data-icon="flat-plus" data-theme="g">Add Location</button></div>
+	</div>
+  </div> 
+</body>
 </html>

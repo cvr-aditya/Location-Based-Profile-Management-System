@@ -1,8 +1,14 @@
 <html>
 	<head>
 		<title>Saved Locations</title>
-          <link rel="stylesheet" type="text/css" href="../css/getlocations.css" />
-		<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+         <meta charset="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile-1.4.2.css" />
+          <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile.flatui.css" />
+            <script type="text/javascript" src="cordova.js"></script>
+          <script src="../jquery.js"></script>
+          <script src="../jquery.mobile-1.4.0-rc.1.js"></script>
+        
 		<script type="text/javascript" src="../js/getLocations.js"></script>
 		<script type="text/javascript" src="../js/delete.js"></script>
       
@@ -10,6 +16,13 @@
 	<!--	-->
 		<script type="text/javascript">
 			$(document).ready(function(){
+                $("#home").click(function(){
+				window.location.href="../index.html";
+                 });
+                $("#back").click(function(){
+				    window.location.href="options.html";
+                });
+                
 				var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
 				getLocation(db,"delete");
 				var names=new Array();
@@ -38,16 +51,28 @@
         
 	</head>
 	<body>
-		<!--<span id="disparea"></span>-->
-        
-            
-            <div class="content">
-			<input type="button" name="button" id="but" value="Delete Marked" class="save" />
-            </div>
-         
+         <div data-role="page">
+		<div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
+			<div data-role="header">
+                <a data-iconpos="notext" id="home" data-role="button" data-icon="home" title="Home">Home</a>
+                <a data-iconpos="notext" id="back" data-role="button" data-icon="back" title="Back">Back</a>
+				<h1>Location Based Profile Manager</h1>
+			</div>
+			</br></br></br></br></br>
+			<fieldset class="ui-grid-a">
+				
+				<div data-theme="b" id="but" data-content-theme="b"><button data-icon="flat-cross" data-theme="d">Delete Selected</button></div>
+				
+				
+			</fieldset>
+  
+		<div style="height: 180px;;" id="map"></div>
+		<div id="highlight"> </div>
+			
             
 
 		  
            
 	</body>
 </html>
+	

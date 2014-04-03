@@ -1,57 +1,43 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Hello World</title>
-		<script type="text/javascript" src="cordova.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/home_page.css" />
-		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript">
-			$(document).ready(function(){
-				//var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
-				
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css1/jquery.mobile-1.4.2.css" />
+  <link rel="stylesheet" type="text/css" href="css1/jquery.mobile.flatui.css" />
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="jquery.js"></script>
+  <script src="jquery.mobile-1.4.0-rc.1.js"></script>
+  <script type="text/javascript">
+		$(document).ready(function(){
 				$("#saveloc").click(function(){
-					if(typeof(Worker) !== "undefined")
-			{
-				if(typeof(w) == "undefined")
-				{
-					w = new Worker("demo_worker.js");
-				}
-				w.onmessage = function (event){
-					document.getElementById("result").innerHTML = event.data;
-				};
-			}
-			else
-			{
-				document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
-			}
-					//document.location.href="html/savelocation.html";
+					document.location.href="html/savelocation.html";
 				});
 				$("#options").click(function(){
-					w.terminate();
-					//document.location.href="html/options.html";
+					document.location.href="html/options.html";
 				});
 				$("#viewloc").click(function(){
-					alert("hello");
-					//document.location.href="html/viewlocations.html";
+					document.location.href="html/viewlocations.html";
+				});
+				$("#help").click(function(){
+					document.location.href="html/help.html";
 				});
 			});
-        </script>
-    </head>
-    <body>
-	<div name="home-page" class="home-page">
-		<div class="header">
-			<h1>Welcome</h1>
-			<p>Count numbers: <output id="result"></output></p>
-			<span><i><h3>Save your location and change the profile</h3></i></span>
-		</div>
-		<div class="content">
-			<input name="username" type="button" id="viewloc" value="View Locations" class="save-class" /><br/>
-			<input name="password" type="button" id="options" value="Options" class="settings-class" />		
-		</div>
-		<div class="footer">
-            
-			<input type="submit" name="submit" id="saveloc" value="Save This Location" class="button" />
-		</div>
-	</div>
-    </body>
+  </script>
+</head>
+<body >
+	<div data-role="page">
+		<div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
+			<div data-role="header">
+				<h1>Location Based Profile Manager</h1>
+			</div>
+			</br></br></br></br></br></br></br>
+			<fieldset class="ui-grid-a">
+				<div data-theme="b" id="viewloc" data-content-theme="b" ><button  data-icon="flat-location" data-theme="e">My Locations</button></div>
+				<div data-theme="b" id="options" data-content-theme="b"><button data-icon="flat-menu" data-theme="f">Options</button></div>
+				<div data-theme="b" id="saveloc" data-content-theme="b"><button data-icon="flat-plus" data-theme="g">Save This Location</button></div>
+				<div data-theme="b" id="help" data-content-theme="b"><button data-icon="info" data-theme="d">Help</button></div>
+			</fieldset>
+		<div id="highlight"> </div>
+	</body>
 </html>
-.
