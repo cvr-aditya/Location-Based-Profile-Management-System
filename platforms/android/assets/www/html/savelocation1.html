@@ -11,14 +11,14 @@
   <script type="text/javascript">
 		$(document).ready(function(){
 			var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
-			message=window.Checker.getMessage();
-			alert(message);
 			$("#home").click(function(){
 				window.location.href="../index1.html";
 			});
 			$("#values").click(function(){
 					var name=$("#name").val().toLowerCase();
 					var profile=$("#profile").val();
+                    var msg=window.Checker.getMessage(profile);
+                    alert(msg);
 					var alerttype;
 					if(document.getElementById('radio-choice-1-a').checked) 
 						alerttype="automatic";	

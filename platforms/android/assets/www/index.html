@@ -7,17 +7,31 @@
         <script type="text/javascript">
 			$(document).ready(function(){
 				//var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
-				//runBackground(db);
-				var message=window.Checker.getMessage();
-				console.log(message);
+				
 				$("#saveloc").click(function(){
-					document.location.href="html/savelocation.html";
+					if(typeof(Worker) !== "undefined")
+			{
+				if(typeof(w) == "undefined")
+				{
+					w = new Worker("demo_worker.js");
+				}
+				w.onmessage = function (event){
+					document.getElementById("result").innerHTML = event.data;
+				};
+			}
+			else
+			{
+				document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
+			}
+					//document.location.href="html/savelocation.html";
 				});
 				$("#options").click(function(){
-					document.location.href="html/options.html";
+					w.terminate();
+					//document.location.href="html/options.html";
 				});
 				$("#viewloc").click(function(){
-					document.location.href="html/viewlocations.html";
+					alert("hello");
+					//document.location.href="html/viewlocations.html";
 				});
 			});
         </script>
@@ -26,6 +40,7 @@
 	<div name="home-page" class="home-page">
 		<div class="header">
 			<h1>Welcome</h1>
+			<p>Count numbers: <output id="result"></output></p>
 			<span><i><h3>Save your location and change the profile</h3></i></span>
 		</div>
 		<div class="content">

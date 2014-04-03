@@ -11,7 +11,7 @@ function saveLocation(db,name,profile,alerttype)
 	
 }   
 function showlocation() {
-   alert("in savelocation");
+  // alert("in savelocation");
    navigator.geolocation.getCurrentPosition(callback,errfun);
 }
  
@@ -39,7 +39,7 @@ function populateDB(tx) {
 	tx.executeSql('INSERT INTO LOCATIONS_LIST (name,latitude,longitude,profile,type) VALUES (?,?,?,?,?)',[name,latitude,longitude,profile,alerttype],null,function(tx,err)
 	  {
 		alert("A record already exists by this name\nPlease enter another name");
-		document.location.href="../html/savelocation.html";
+		document.location.href="../html/savelocation1.html";
 	  }
 	);
 	tx.executeSql('SELECT * FROM LOCATIONS_LIST',[],function(tx,results){
@@ -47,11 +47,11 @@ function populateDB(tx) {
 	alert(len);
 	for(var i=0;i<len;i++)
 	{
-		alert(results.rows.item(i).name);
+	//	alert(results.rows.item(i).name);
 		alert(results.rows.item(i).latitude);
 		alert(results.rows.item(i).longitude);
-		alert(results.rows.item(i).profile);
-		alert(results.rows.item(i).type);
+	//	alert(results.rows.item(i).profile);
+	//	alert(results.rows.item(i).type);
 	}
 	},null);
 }
@@ -62,19 +62,7 @@ function errorCB(tx, err) {
 
 function successCB(tx,results) {
 	document.location.href="../html/viewlocations.html";
-       alert("success! "+results.rows.length);
+    //   alert("success! "+results.rows.length);
 }
 
-
-var onSuccess = function(position) {
-    this.latitude=position.coords.latitude;
-    this.longitude=position.coords.longitude      
-};
-
-// onError Callback receives a PositionError object
-//
-function onError(error) {
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
-}
 

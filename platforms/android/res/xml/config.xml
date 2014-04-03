@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Hello Cordova</name>
+<widget id="org.cvr.LocationProfileManager" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Location Based Profile Manager</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Changes profile depending on the position of the mobile
     </description>
     <access origin="*" />
     <content src="index.html" />
@@ -10,12 +10,12 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <name>HelloWorld</name>
+    <name>Location Based Profile Manager</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Changes profile depending on the position of the mobile
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="sirna.aditya@gmail.com" href="http://phonegap.com">
+        Aditya Sirna
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none" />
