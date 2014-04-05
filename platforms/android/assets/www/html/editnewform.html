@@ -5,28 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile-1.4.2.css" />
   <link rel="stylesheet" type="text/css" href="../css1/jquery.mobile.flatui.css" />
-  <script type="text/javascript" src="../js/index.js"></script>
+  <script type="text/javascript" src="../js/editmodal.js"></script>
+  <script type="text/javascript" src="../js/edit.js"></script>
   <script src="../jquery.js"></script>
   <script src="../jquery.mobile-1.4.0-rc.1.js"></script>
   <script type="text/javascript">
 		$(document).ready(function(){
+			var oldname=name;
 			var db = window.openDatabase("Locations", "1.0", "Stored_Locations", 10000);
 			$("#home").click(function(){
 				window.location.href="../index.html";
 			});
 			$("#values").click(function(){
-					var name=$("#name").val().toLowerCase();
-					var profile=$("#profile").val();
-                    var msg=window.ProfileManager.setMode(profile);
-                    alert(msg);
-					var alerttype;
+					var newname=$("#name").val().toLowerCase();
+					var newprofile=$("#profile").val();
+					var newalerttype;
 					if(document.getElementById('radio-choice-1-a').checked) 
-						alerttype="automatic";	
+						newalerttype="automatic";	
 					else if(document.getElementById('radio-choice-1-b').checked) 
-						alerttype="manual";
-					console.log(name+ "  "+ profile+"  "+alerttype);
-					saveLocation(db,name,profile,alerttype);
-			});
+						newalerttype="manual";
+					console.log(name+ "  "+ profile+"  "+newalerttype);
+					editSelected(db,oldname,newname,newprofile,newalerttype);
+			})
 		});
   </script>
 </head>
@@ -56,7 +56,7 @@
           <label for="radio-choice-1-b">Manual</label>
         </fieldset>
     </div>
-	<div data-theme="b" id="values" data-content-theme="b"><button data-icon="flat-plus" data-theme="g">Add Location</button></div>
+	<div data-theme="b" id="values" data-content-theme="b"><button data-icon="flat-plus" data-theme="g">Edit Location</button></div>
 	</div>
 <!--  </div> -->
 
