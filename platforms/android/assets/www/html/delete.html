@@ -27,52 +27,36 @@
 				getLocation(db,"delete");
 				var names=new Array();
 				$("#but").show();
-				$("#but").click(function(){
-						
+				$("#but").click(function(){		
 					$("input:checkbox[name=delete]").each(function()
 					{
 							var $this = $(this);
 							if($this.is(":checked")){
 								names.push($this.attr("id"));}
 					});
-			/*	var but=document.createElement("script");
-				but.setAttribute("type","text/javascript");
-				but.setAttribute("src","../js/delete.js");
-				document.appendChild(but);*/
-				
-					for(var i=0;i<names.length;i++)
-						console.log(names[i]);
-					deleteSelected(db,names);
+					if(names.length==0)
+						alert("Select atleast One record to Delete");
+					else
+						deleteSelected(db,names);
 				});
-					//*/
-
 			});
 		</script>
         
 	</head>
 	<body>
-         <div data-role="page">
+        <div data-role="page">
 		<div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
 			<div data-role="header">
                 <a data-iconpos="notext" id="home" data-role="button" data-icon="home" title="Home">Home</a>
                 <a data-iconpos="notext" id="back" data-role="button" data-icon="back" title="Back">Back</a>
 				<h1>Location Based Profile Manager</h1>
 			</div>
-			</br></br></br></br></br>
 			<fieldset class="ui-grid-a">
-				
 				<div data-theme="b" id="but" data-content-theme="b"><button data-icon="flat-cross" data-theme="d">Delete Selected</button></div>
-				
-				
 			</fieldset>
-  
 		<div style="height: 180px;;" id="map"></div>
-		<div id="highlight"> </div>
-			
-            
-
-		  
-           
+		<div id="highlight"> </div>    
+		</div>
 	</body>
 </html>
 	

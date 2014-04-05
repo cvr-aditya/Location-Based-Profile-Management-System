@@ -30,15 +30,17 @@
 					for(i=0;i<radios.length;i++)
 						if(radios[i].checked)
 							break;
-					$("#but").hide();
-					$("#restable").hide();
-					var id=i.toString()+"[0]";
-					var profile=i.toString()+"[3]";
-					var type=i.toString()+"[4]";
-					id=document.getElementById(id).value;
-					profile=document.getElementById(profile).value;
-					type=document.getElementById(type).value;
-					getNewValues(db,id,profile,type);
+					if(i==radios.length)
+						alert("Select a record to edit");
+					else{
+						var id=i.toString()+"[0]";
+						var profile=i.toString()+"[3]";
+						var type=i.toString()+"[4]";
+						id=document.getElementById(id).value;
+						profile=document.getElementById(profile).value;
+						type=document.getElementById(type).value;
+						getNewValues(db,id,profile,type);
+					}
 				});
 			});
 		</script>
@@ -51,18 +53,11 @@
                 <a data-iconpos="notext" id="back" data-role="button" data-icon="back" title="Back">Back</a>
 				<h1>Location Based Profile Manager</h1>
 			</div>
-			</br></br></br></br></br>
 			<fieldset class="ui-grid-a">
-				
 				<div data-theme="b" id="but" data-content-theme="b"><button data-icon="flat-new" data-theme="g">Edit Selected</button></div>
-				
-				
 			</fieldset>
-  
 		<div style="height: 180px;;" id="map"></div>
 		<div id="highlight"> </div>
-			
-		
-         
+		</div>     
 	</body>
 </html>

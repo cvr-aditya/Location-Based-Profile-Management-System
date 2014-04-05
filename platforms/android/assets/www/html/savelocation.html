@@ -17,14 +17,46 @@
 			$("#values").click(function(){
 					var name=$("#name").val().toLowerCase();
 					var profile=$("#profile").val();
-                    var msg=window.ProfileManager.setMode(profile);
-                    alert(msg);
+//                    var msg=window.ProfileManager.setMode(profile);
+//                    alert(msg);
+					flag=true;
 					var alerttype;
+					if(name=="")
+					{
+						alert("Please Enter Your Name");
+						$("#name").focus();
+						flag=false;
+					}
+					if(!isNaN(name) && flag)
+					{
+						alert("Please Enter Only Characters");
+						$("#name").focus();
+						flag=false;
+					}
+					if((name.length<5 || name.length>15) && flag)
+					{
+						alert("Name should be greater than 5 characters and less than 15 characters");
+						flag=false;
+						$("#name").focus();
+					}
+					if (/[^A-Za-z0-9_]{1,30}$/.test( name ) && flag)
+					{
+						alert(" Name Can Only Contain Alphanumeric Characters And Hyphens(-)");
+						$("#name").focus();
+						flag=false;
+					}
+					if(profile==""&& flag)
+					{
+						alert("Select Profile From Dropdown Menu");
+						$("#profile").focus();
+						flag=false;
+					}
 					if(document.getElementById('radio-choice-1-a').checked) 
 						alerttype="automatic";	
 					else if(document.getElementById('radio-choice-1-b').checked) 
 						alerttype="manual";
 					console.log(name+ "  "+ profile+"  "+alerttype);
+					if(flag)
 					saveLocation(db,name,profile,alerttype);
 			});
 		});

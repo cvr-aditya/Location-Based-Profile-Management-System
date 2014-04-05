@@ -19,11 +19,9 @@ function editfun(tx)
 }
 
 function errorEdit(tx, err) {
-	alert("Error processing SQL: "+err);
+	alert("A record already exists by this name\nPlease enter another name");
 }
 
 function successEdit(tx,results) {
-	console.log("suceess edit");
 	document.location.href="viewlocations.html";
-       // alert("success! "+results.rows.length);
 }
