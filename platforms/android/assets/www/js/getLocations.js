@@ -1,4 +1,5 @@
 var opttype;
+var flag=false;
 //var db;
 function getLocation(db,opttype)
 {
@@ -47,7 +48,7 @@ function createResultTable(result,numrows)
 	restable.setAttribute("id","restable");
 	restable.setAttribute("border","2");
 	restable.setAttribute("width","500");
-	restable.setAttribute("style","position: absolute;");
+	restable.setAttribute("style","position: absolute;top:225px;left:100px;right:200px;");
 	var rowelem=document.createElement('tr');
 	var colelem=document.createElement('td');
 	if(flag==2) {
@@ -146,9 +147,11 @@ function createResultTable(result,numrows)
  
 	// Populate the database 
 function populateDB(tx) {
+    
 	tx.executeSql('SELECT * FROM LOCATIONS_LIST',[],
 		function(tx,results){
 			alert("here");
+            flag=true;
 			var len=results.rows.length;
 			alert("in res"+len);
 			createResultTable(results,len);
@@ -156,7 +159,8 @@ function populateDB(tx) {
 		function(tx,err)
 	  	{
 		 	alert("No Locations Saved\nYou can save locations in the below form"); 
-			document.location.href="../html/savelocation.html";
+            flag=false;
+			window.location.href="../html/savelocation.html";
 		}
 	);
 }

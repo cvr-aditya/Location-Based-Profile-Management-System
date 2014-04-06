@@ -17,8 +17,8 @@
 			$("#values").click(function(){
 					var name=$("#name").val().toLowerCase();
 					var profile=$("#profile").val();
-//                    var msg=window.ProfileManager.setMode(profile);
-//                    alert(msg);
+                    var msg=window.ProfileManager.setMode(profile);
+                    alert(msg);
 					flag=true;
 					var alerttype;
 					if(name=="")
@@ -64,9 +64,6 @@
 </head>
 <body >
   <div data-role="page">
-
-    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
-
     <div data-role="header">
       <a data-iconpos="notext" id="home" data-role="button" data-icon="home" title="Home">Home</a>
       <h1>Location Based Profile Manager</h1>

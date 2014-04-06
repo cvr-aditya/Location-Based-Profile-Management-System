@@ -19,22 +19,51 @@
 			$("#values").click(function(){
 					var newname=$("#name").val().toLowerCase();
 					var newprofile=$("#profile").val();
+					flag=true;
+					if(newname=="")
+					{
+						alert("Please Enter Your Name");
+						$("#name").focus();
+						flag=false;
+					}
+					if(!isNaN(newname) && flag)
+					{
+						alert("Please Enter Only Characters");
+						$("#name").focus();
+						flag=false;
+					}
+					if((newname.length<5 || newname.length>15) && flag)
+					{
+						alert("Name should be greater than 5 characters and less than 15 characters");
+						flag=false;
+						$("#name").focus();
+					}
+					if (/[^A-Za-z0-9_]{1,30}$/.test( newname ) && flag)
+					{
+						alert(" Name Can Only Contain Alphanumeric Characters And Hyphens(-)");
+						$("#name").focus();
+						flag=false;
+					}
+					if(newprofile==""&& flag)
+					{
+						alert("Select Profile From Dropdown Menu");
+						$("#profile").focus();
+						flag=false;
+					}
 					var newalerttype;
 					if(document.getElementById('radio-choice-1-a').checked) 
 						newalerttype="automatic";	
 					else if(document.getElementById('radio-choice-1-b').checked) 
 						newalerttype="manual";
 					console.log(name+ "  "+ profile+"  "+newalerttype);
-					editSelected(db,oldname,newname,newprofile,newalerttype);
+					if(flag)
+						editSelected(db,oldname,newname,newprofile,newalerttype);
 			})
 		});
   </script>
 </head>
 <body >
   <div data-role="page">
-
-    <div data-role="panel" id="panel" data-position="right" data-theme="a" data-display="push"></div>
-
     <div data-role="header">
       <a data-iconpos="notext" id="home" data-role="button" data-icon="home" title="Home">Home</a>
       <h1>Location Based Profile Manager</h1>
